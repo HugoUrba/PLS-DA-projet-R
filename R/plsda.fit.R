@@ -3,7 +3,7 @@
 #'\code{plsda.fit} is used to fit a PLS-DA regression model.
 #'
 #' @usage
-#' plsda.fit(formula,data,ncomp, var.select = F, nfold = 10)
+#' plsda.fit(formula,data,ncomp)
 #' @param
 #' formula an object of class formula" (or one that can be coerced to that class): a symbolic description of the model
 #' to be fitted. The details of model specification are given under ‘Details'.
