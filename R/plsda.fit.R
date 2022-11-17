@@ -1,11 +1,9 @@
 #' Fitting PLS-DA Regression Model
 #'
-#'\code{plsda.fit} is used to fit a PLS-DA regression model.
-#'
 #' @usage
 #' plsda.fit(formula,data,ncomp)
 #' @param
-#' formula an object of class formula" (or one that can be coerced to that class): a symbolic description of the model
+#' formula an object of class "formula" (or one that can be coerced to that class): a symbolic description of the model
 #' to be fitted. The details of model specification are given under ‘Details'.
 #' @param
 #' data the dataframe containing the variables in the model.
@@ -63,9 +61,7 @@
 #'fit.t4<-plsda.fit(Species~.,iris, var.select = T)
 #'fit.t5<-plsda.fit(Species~.,iris)
 
-library("fastDummies")
-library("plyr")
-library("pracma")
+
 # APPRENTISSAGE ET CREATION DU MODELE PLSDA
 plsda.fit<-function(formula,data,ncomp){
 
@@ -157,5 +153,4 @@ plsda.fit<-function(formula,data,ncomp){
   class(objet)<-"PLSDA"
   return(objet)
 }
-plsda.fit(Species~., data, ncomp=3)
 
