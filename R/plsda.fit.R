@@ -43,15 +43,15 @@ plsda.fit<-function(formula, data, ncomp = 2){
     stop("formula must be R formula !")
   }
   
-  #Extraction of the target variable name
-  Yname<-intersect(all.vars(formula)[1],colnames(data))
-  
-  
   #getting X et Y
   X <- model.matrix(formula, data = data)
   X <- X[,-1] #suppression de l'intercept
   Y <- model.response(model.frame(formula, data = data))
   Y <- as.factor(as.vector(Y))
+  
+  #Extraction of the target variable name
+  Xname <- colnames(X)
+  Yname <- intersect(all.vars(formula)[1],colnames(data))
   
   #calculation of Xmeans
   Xmeans <- colMeans(X)
@@ -78,7 +78,7 @@ plsda.fit<-function(formula, data, ncomp = 2){
   Xloadings <- matrix(0, p, ncomp)
   Yloadings <- matrix(0, q, ncomp)
   
-  u <- Yk[,1]
+  u <- Yb[,1]
   
   #boucle for afin de remplir les matrices précédentes
   for (i in 1:ncomp){
@@ -91,7 +91,7 @@ plsda.fit<-function(formula, data, ncomp = 2){
       q <- t(Yk)%*%t/sum(t^2)
       u <- Yk%*%q/sum(q^2)
       Wdiff <- W-Wold
-      if(sum(Wold^2) < 1e-10 | n_iter == 500){break}
+      if(sum(Wdiff^2) < 1e-10 | n_iter == 500){break}
       Wold <- W
       n_iter <- n_iter+1
     }
@@ -100,7 +100,7 @@ plsda.fit<-function(formula, data, ncomp = 2){
     Xl <- t(Xk)%*%t/sum(t^2)
     Xk <- Xk-t%*%t(Xl)
     Yl <- t(Yk)%*%t/sum(t^2)
-    Yk <- Yk-u%*%t(Yl)
+    Yk <- Yk-t%*%t(Yl)
     
     Xweights[, i] <- W #poids des X
     Yweights[, i] <- q #poids des Y
@@ -109,7 +109,8 @@ plsda.fit<-function(formula, data, ncomp = 2){
     Xloadings[, i] <- Xl
     Yloadings[, i] <- Yl
   }
-  Xrotations <- Xweights%*%pinv(t(Xloadings)%*%Xweights)
+  
+  Xrotations <- Xweights%*%solve(t(Xloadings)%*%Xweights)
   coef <- Xrotations%*%t(Yloadings)
   coef <- coef*sapply(Yb, sd)
   intercept <- colMeans(Yb)
@@ -118,6 +119,7 @@ plsda.fit<-function(formula, data, ncomp = 2){
   objet <- list(
     "X" = X,
     "Y" = Yb,
+    "Xname" = Xname,
     "Yname" = Yname,
     "xweights" = Xweights,
     "yweigths" = Yweights,
