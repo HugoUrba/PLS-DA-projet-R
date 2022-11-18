@@ -121,6 +121,7 @@ plsda.fit<-function(formula, data, ncomp = 2){
     "Y" = Yb,
     "Xname" = Xname,
     "Yname" = Yname,
+    "modalities" = levels(Y),
     "Xmeans" = Xmeans,
     "xweights" = Xweights,
     "yweigths" = Yweights,
@@ -135,4 +136,3 @@ plsda.fit<-function(formula, data, ncomp = 2){
   return(objet)
 }
 
-plsda.fit(Species~., data = iris)
