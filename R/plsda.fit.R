@@ -115,6 +115,23 @@ plsda.fit<-function(formula, data, ncomp = 2){
   coef <- coef*sapply(Yb, sd)
   intercept <- colMeans(Yb)
   
+  #tables names
+  compnames <- paste0("Comp.", 1:ncomp)
+  
+  rownames(Xweights) <- Xname
+  colnames(Xweights) <- compnames
+  rownames(Yweights) <- colnames(Yb)
+  colnames(Yweights) <- compnames 
+  rownames(Xscores) <- rownames(X)
+  colnames(Xscores) <- compnames
+  rownames(Yscores) <- rownames(Yb)
+  colnames(Yscores) <- compnames
+  rownames(Xloadings) <- Xname
+  colnames(Xloadings) <- compnames
+  rownames(Yloadings) <- colnames (Yb)
+  colnames(Yloadings) <- compnames
+  rownames(coef) <- Xname
+  colnames(coef) <- colnames(Yb)
   # Définition de l'objet
   objet <- list(
     "X" = X,
@@ -123,8 +140,8 @@ plsda.fit<-function(formula, data, ncomp = 2){
     "Yname" = Yname,
     "modalities" = levels(Y),
     "Xmeans" = Xmeans,
-    "xweights" = Xweights,
-    "yweigths" = Yweights,
+    "Xweights" = Xweights,
+    "Yweigths" = Yweights,
     "Xscores" = Xscores,
     "Yscores" = Yscores,
     "Xloadings" = Xloadings,
@@ -136,3 +153,12 @@ plsda.fit<-function(formula, data, ncomp = 2){
   return(objet)
 }
 
+print.classi <- function(objetPLSDA){
+  classification <- rbind(objetPLSDA$intercept, objetPLSDA$coef)
+  
+  cat("dumny species ","\n")
+  dumny <- as.matrix(objet$dum)
+  print(dumny)
+  
+}
+print(object)
