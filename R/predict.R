@@ -1,3 +1,19 @@
+#' predict function
+#' It is used either to predict the modality of a target variable depending on the explanatory variables.
+#' @param
+#' objetPLSDA, an object belonging to the class PLSDA, an object which was returned by the fit function. 
+#' The model obtained with our train dataset
+#' @param 
+#' newdata, the test dataset, with a number of observation and values for each explanatory variable. 
+#' @param
+#' type, the type of prediction we want. If the type is posterior, the function returns 
+#' the probability of belonging to each modality.
+#' If the type is class, the function returns the modality predicted for each observation.   
+#'
+#' @return  
+#'A column vector containing the predicted values for the target variable, according to the test dataset.
+#'
+
 plsda.predict <- function(objetPLSDA, newdata, type = "class"){
   if (class(objetPLSDA) != "PLSDA") {
     stop("Objet_PLSDA must be a PLSDA class Object")
@@ -5,16 +21,24 @@ plsda.predict <- function(objetPLSDA, newdata, type = "class"){
   
   X <- apply(newdata, 1, function(x) x - colMeans(objetPLSDA$X))
   X <- X/apply(objetPLSDA$X,2, sd)
+  
   Ypred <- t(X) %*% objetPLSDA$coef
   Ypred <- Ypred + colMeans(objetPLSDA$Y)
+  
+  
   Yexp <- apply(Ypred,1, exp)
-  Ysoftmax <- t(Yexp/colSums(Yexp))
+  Ysoftmax <- t(Yexp/colSums(Yexp)) #softmax calculs
+  
   if (type == "posterior"){
     return(Ysoftmax)
   }
   else if (type == "class"){
-    pred <- apply(Ysoftmax,1,which.max) # max des prob par lignes
-    predY <- objetPLSDA$Ymodalities[pred] # nom de la calsse correspondantes
-    return(predY)
+    pred <- apply(Ysoftmax,1,which.max) # prob max per line
+    predY <- objetPLSDA$modalities[pred] # name of the class
+    return(as.factor(predY))
   }
 }
+
+pls <- plsda.fit(Species~.,data = iris)
+plsda.predict(pls, newdata = iris[,1:4])
+

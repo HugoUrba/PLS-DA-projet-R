@@ -34,7 +34,7 @@
 
 library(fastDummies)
 library(plyr)
-library(pracma)
+
 # APPRENTISSAGE ET CREATION DU MODELE PLSDA
 plsda.fit<-function(formula, data, ncomp = 2){
   
