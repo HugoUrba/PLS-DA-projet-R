@@ -36,6 +36,8 @@
 # APPRENTISSAGE ET CREATION DU MODELE PLSDA
 plsda.fit<-function(formula, data, ncomp = 2){
   
+  library(fastDummies)
+  library(plyr)
   #check if the entry is a formula Y~X
   if(plyr::is.formula(formula)==F){
     stop("formula must be R formula !")
@@ -151,3 +153,14 @@ plsda.fit<-function(formula, data, ncomp = 2){
   return(objet)
 }
 
+print.classi <- function(objetPLSDA){
+  classification <- rbind(objetPLSDA$coef, objetPLSDA$intercept)
+  #rownames(classification[1:p,]) <- objetPLSDA$Xname 
+  
+  cat("classification","\n")
+  print(classification)
+}
+
+summary.plsda <- function(objetPLSDA){
+  
+}

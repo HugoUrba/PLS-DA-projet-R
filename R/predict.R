@@ -30,13 +30,23 @@ plsda.predict <- function(objetPLSDA, newdata, type = "class"){
   Ysoftmax <- t(Yexp/colSums(Yexp)) #softmax calculs
   
   if (type == "posterior"){
-    return(Ysoftmax)
+    objet1 <- list(
+      "Ysoftmax"=Ysoftmax,
+      "Ypred"=Ypred
+    )
+    return(objet1)
   }
   else if (type == "class"){
     pred <- apply(Ysoftmax,1,which.max) # prob max per line
-    predY <- objetPLSDA$modalities[pred] # name of the class
-    return(as.factor(predY))
+    classYpred <- objetPLSDA$modalities[pred] # name of the class
+    objet2 <- list(
+      "predclass"=as.factor(classYpred),
+      "Ypred"=Ypred
+    )
+    
+    return(objet2)
   }
 }
 
-
+pls <- plsda.fit(Species~., data = iris, ncomp = 2)
+plsda.predict(pls, newdata = iris[,1:4], type = "class")
