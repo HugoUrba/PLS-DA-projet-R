@@ -1,4 +1,4 @@
-#' predict function
+#' Predict function
 #' It is used either to predict the modality of a target variable depending on the explanatory variables.
 #' @param
 #' objetPLSDA, an object belonging to the class PLSDA, an object which was returned by the fit function. 
@@ -39,6 +39,4 @@ plsda.predict <- function(objetPLSDA, newdata, type = "class"){
   }
 }
 
-pls <- plsda.fit(Species~.,data = iris)
-plsda.predict(pls, newdata = iris[,1:4])
 

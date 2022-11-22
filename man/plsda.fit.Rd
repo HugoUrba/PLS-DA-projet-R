@@ -2,70 +2,45 @@
 % Please edit documentation in R/plsda.fit.R
 \name{plsda.fit}
 \alias{plsda.fit}
-\title{Fitting PLS-DA Regression Model}
+\title{PLS-DA
+{plsda.fit} is used to fit a PLS-DA regression model.}
 \usage{
-plsda.fit(formula,data,ncomp)
+plsda.fit(formula, data, ncomp = 2)
 }
 \arguments{
-\item{formula}{an object of class "formula" (or one that can be coerced to that class): a symbolic description of the model
+\item{formula, }{an object of class formula: a symbolic description of the model
 to be fitted. The details of model specification are given under ‘Details'.}
 
-\item{data}{the dataframe containing the variables in the model.}
+\item{data, }{the dataframe containing the variables in the model.}
 
-\item{ncomp}{optional, the number of components extracted in NIPALS algorithm. If ncomp is missing, then the number
-of componenents is determined by Cross Validation with the function plsda.cv.}
-
-\item{var.select}{is \code{FALSE} by default, if \code{TRUE}, then the VIP will be calculated for each predictors with the
-\code{plsda.vip} function. See 'Details' for specification about the VIP criterion.}
-
-\item{nfold}{is the number of folds used in cross validation. By default, \code{nfold = 10}.}
+\item{ncomp, }{the number of components extracted in NIPALS algorithm, an integer
+comprised between 1 and the number of explanatory variables.}
 }
 \value{
-An object of class 'PLSDA' is a list containing at least the following components :
+An object of class 'PLSDA' containing the following components :
 
-\code{X} the original dataset containing the predictors.
-\cr
-\code{Y} the original vector of factors that is the variable to predict.
-\cr
-\code{level} the terms of the variable to predict.
-\cr
-\code{Xmeans} the means of each predictors.
-\cr
-\code{pls.coef}the loadings of the predictors, calculated by NIPALS algorithm in plsda.pls function.
-\cr
-\code{ncomp} the number of components used in plsda.pls.
-\cr
-\code{locoef} the coefficients of the logistic regression applied on the loadings of the predictors
+{X} the original dataset containing the predictors.
+
+{Y} the variable(s) to predict.
+
+{level} the terms of the variables to predict.
+
+{Xmeans} the means of each predictor.
+
+{pls.coef}the loadings of the predictors, calculated by NIPALS algorithm in plsda.pls function.
+
+{ncomp} the number of components used in plsda.pls.
+
+{locoef} the coefficients of the logistic regression applied on the loadings of the predictors
 to have the final coefficients of PLS-DA.
-\cr
-\code{plsda.coef} the final coefficients of the plsda, which are logit functions.
-\cr
+
+{plsda.coef} the final coefficients of the plsda, which are logit functions.
 }
 \description{
-Fitting PLS-DA Regression Model
-}
-\details{
-The PLS-DA regression model is used to fit values of a dataset with a large number of predictors (sometimes greater
-than the number of observations). First of all, the NIPALS algorithm is performed on the data to get a prediction of
-the target variable according to the components of the predictors. Then, a logistic regression is used on the loadings
-of X in order to get the final coefficients of the PLS-DA regression model.The prediction will then use these
-coefficients to perform a softmax function to transform them in probabilities of belonging to the different class for
-for each observations.
-
-Some variables are more important than others for the prediction of Y. These variables can be identified by
-calculating their VIP criterion. The \code{plsda.fit} can call the \code{plsda.vip} function to calculate
-the VIP for each variable and select the variables important for predictions to build the model.
-It is possible to plot the VIP by calling the plot.vip on \code{plsda.fit$VIP}.At least 2 variables must
-be chosen to build the model. Hence, if only one variable is above the threshold, the algorithm choose
-the 2 variables that have the greatest VIP.
+PLS-DA
+{plsda.fit} is used to fit a PLS-DA regression model.
 }
 \examples{
 #ncomp is specified
-fit.t1<-plsda.fit(Species~.,iris,3)
-fit.t3<-plsda.fit(Species~.,iris,2, var.select = T)
-
-#ncomp is not specified, cross-validation will be performed automatically
-fit.t2<-plsda.fit(Species~.,iris, nfold = 30)
-fit.t4<-plsda.fit(Species~.,iris, var.select = T)
-fit.t5<-plsda.fit(Species~.,iris)
+fit1<-plsda.fit(Species~.,iris,ncomp=4)
 }

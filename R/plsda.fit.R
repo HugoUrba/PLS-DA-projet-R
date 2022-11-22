@@ -1,5 +1,5 @@
 #' PLS-DA
-#'\code{plsda.fit} is used to fit a PLS-DA regression model.
+#' {plsda.fit} is used to fit a PLS-DA regression model.
 #' @param
 #' formula, an object of class formula: a symbolic description of the model
 #' to be fitted. The details of model specification are given under ‘Details'.
@@ -9,31 +9,29 @@
 #' ncomp, the number of components extracted in NIPALS algorithm, an integer
 #' comprised between 1 and the number of explanatory variables.
 #' @return
-#'An object of class 'PLSDA' containing the following components :
+#' An object of class 'PLSDA' containing the following components :
 #' @return
-#' \code{X} the original dataset containing the predictors.
-#' \cr
-#' \code{Y} the variable(s) to predict.
-#' \cr
-#' \code{level} the terms of the variables to predict.
-#' \cr
-#' \code{Xmeans} the means of each predictor.
-#' \cr
-#' \code{pls.coef}the loadings of the predictors, calculated by NIPALS algorithm in plsda.pls function.
-#' \cr
-#' \code{ncomp} the number of components used in plsda.pls.
-#' \cr
-#' \code{locoef} the coefficients of the logistic regression applied on the loadings of the predictors
+#' {X} the original dataset containing the predictors.
+#' 
+#' {Y} the variable(s) to predict.
+#' 
+#' {level} the terms of the variables to predict.
+#' 
+#' {Xmeans} the means of each predictor.
+#' 
+#' {pls.coef}the loadings of the predictors, calculated by NIPALS algorithm in plsda.pls function.
+#' 
+#' {ncomp} the number of components used in plsda.pls.
+#' 
+#' {locoef} the coefficients of the logistic regression applied on the loadings of the predictors
 #' to have the final coefficients of PLS-DA.
-#' \cr
-#' \code{plsda.coef} the final coefficients of the plsda, which are logit functions.
-#' \cr
+#' 
+#' {plsda.coef} the final coefficients of the plsda, which are logit functions.
+#' 
 #' @examples
 #' #ncomp is specified
-#'fit1<-plsda.fit(Species~.,iris,ncomp=4)
+#' fit1<-plsda.fit(Species~.,iris,ncomp=4)
 
-library(fastDummies)
-library(plyr)
 
 # APPRENTISSAGE ET CREATION DU MODELE PLSDA
 plsda.fit<-function(formula, data, ncomp = 2){
@@ -153,12 +151,3 @@ plsda.fit<-function(formula, data, ncomp = 2){
   return(objet)
 }
 
-print.classi <- function(objetPLSDA){
-  classification <- rbind(objetPLSDA$intercept, objetPLSDA$coef)
-  
-  cat("dumny species ","\n")
-  dumny <- as.matrix(objet$dum)
-  print(dumny)
-  
-}
-print(object)
