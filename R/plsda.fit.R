@@ -147,7 +147,10 @@ plsda.fit<-function(formula, data, ncomp = 2){
     "Xloadings" = Xloadings,
     "Yloadings" = Yloadings,
     "coef" = coef,
-    "intercept" = intercept
+    "intercept" = intercept,
+    "ncomp" = ncomp,
+    "components" = compnames,
+    "n_iter" = n_iter
   )
   class(objet)<-"PLSDA"
   return(objet)
@@ -164,5 +167,8 @@ print.classi <- function(objetPLSDA){
 summary.plsda <- function(objetPLSDA){
   
 }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> bdfacb93ed12795a5521047e8b834470ddfe0af6
