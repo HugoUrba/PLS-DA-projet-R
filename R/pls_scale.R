@@ -18,44 +18,46 @@
 #'scale.t2<-plsda.scale(iris[,-5],reduce=T)
 
 plsda.scale <- function(X,reduce = FALSE){
-  #vérifier si la matrice est numeric
+  #Check wether the matrix is numeric
   X<-as.matrix(X)
   if(typeof(X)!="double"){
     stop("Not expected character's matrix")
   }
-  #création de l'instance qui retourne matrice centrée réduite , la moyenne de chaque vble et son écart type sous forme de liste
+  #creation of the instance which returns reduced-centered matrix. Each variable-mean and its standard deviation are collected in a list
   instance <- list()
-  #application de la fonction mean à chaque colonne du matrice X
-  instance$mean <- apply(X,2,mean)
-  instance$new <- X-instance$mean
-  #condition sur le paramètre reduce
-  if(reduce){
-    #application de la fonction sd à chaque colonnes du matrice X
-    instance$sd <- apply(X,2,sd)
-    #centrage et réduction de toutes les lignes du matrice x
-    instance$new_X <- apply(X,1,function(x){ return((x-instance$mean)/instance$sd)})
+  #function mean applied row per row to each X column
+  instance$mean <-apply(X,1,function(x){return(x-mean(x))})
+  #condition on reduce
+  if(reduce==TRUE){
+    #compute the coefficients of the matrix in dividing the standard deviation
+    
+    instance$new_X <- apply(instance$mean,1,function(x){return(x/sd(x))})
+    instance$new_mean_col <- apply(instance$new_X,2,mean)
+    instance$new_mean_sd <- apply(instance$new_X,2,sd)
     class(instance) <- "scale"
     return(instance)
-  }else{
-    return(list("New"=as.matrix(instance$new),
-                "means"=instance$mean))
+  
   }
 }
 
+data(iris)
+print(iris)
+object <- plsda.scale(iris[,1:4],reduce=TRUE)
+print(object)
 
 #surcharger la méthode print
 
 print.scale <- function(objet){
-  cat("Moyenne","\n")
-  mean <- objet$mean
-  print(mean)
-  cat("Standard deviation","\n")
-  sd <- objet$sd
-  print(sd)
-  cat("New","\n")
-  new<- as.matrix(objet$new_X)
-  print(new)
+  cat("New column mean (should be around 0)",":")
+  new_mean<-as.matrix(objet$new_mean_col)
+  print(new_mean)
+  cat("New column standard deviation (must be 1)",":")
+  new_st<-as.matrix(objet$new_mean_sd)
+  print(new_st)
+  cat("New values after scaling processing ",":")
+  new_x <- objet$new_X
+  print(head(new_x))
 
 }
-
+print(object)
 
