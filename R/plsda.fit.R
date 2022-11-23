@@ -36,10 +36,8 @@
 # APPRENTISSAGE ET CREATION DU MODELE PLSDA
 plsda.fit<-function(formula, data, ncomp = 2){
   
-  library(fastDummies)
-  library(plyr)
   #check if the entry is a formula Y~X
-  if(plyr::is.formula(formula)==F){
+  if(!inherits(formula, "formula")){
     stop("formula must be R formula !")
   }
   
@@ -62,9 +60,7 @@ plsda.fit<-function(formula, data, ncomp = 2){
   q <- nlevels(Y)
   
   #getting the Y modality matrix
-  Yb <- dummy_cols(Y)
-  Yb <- Yb[,-1]
-  colnames(Yb) <- levels(Y)
+  Yb <- as.data.frame(plsda.dumnies(Y)$dum)
   
   #scaling X and Y
   Xk <- scale(X)
@@ -132,6 +128,7 @@ plsda.fit<-function(formula, data, ncomp = 2){
   colnames(Yloadings) <- compnames
   rownames(coef) <- Xname
   colnames(coef) <- colnames(Yb)
+  
   # Définition de l'objet
   objet <- list(
     "X" = X,
@@ -167,3 +164,5 @@ print.classi <- function(objetPLSDA){
 summary.plsda <- function(objetPLSDA){
   
 }
+
+
