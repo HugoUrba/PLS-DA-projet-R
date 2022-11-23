@@ -7,7 +7,7 @@ programmation d'un package R qui permet d'effectuer une régression PLS sur un j
 
 * Descriptive and Explanatory Graphs with RShiny Dashboard
 
-* A detailed tutorial (wiki - attached)
+* A detailed tutorial (cf.Wiki)
 
 **Partial Least Squares(PLS) in a few bullet-points **
 
