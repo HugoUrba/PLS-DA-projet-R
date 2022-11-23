@@ -27,8 +27,6 @@ plsda.dumnies <- function (X,name){
   return(instance)
 }
 
-object<- plsda.dumnies(iris[,5])
-print(object)
 
 #surcharger la méthode print pour afficher la matrice des variables indicatrices
 
@@ -38,4 +36,3 @@ print.dumnies <- function(objet){
   print(dumny)
 
 }
-print(object)

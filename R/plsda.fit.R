@@ -167,8 +167,3 @@ print.classi <- function(objetPLSDA){
 summary.plsda <- function(objetPLSDA){
   
 }
-<<<<<<< HEAD
-
-
-=======
->>>>>>> bdfacb93ed12795a5521047e8b834470ddfe0af6

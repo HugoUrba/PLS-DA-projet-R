@@ -1,15 +1,14 @@
-# #This function randomly separate a data set into a learning sample and test sample that can be selected by the user.
-#' @usage
+# This function randomly separate a data set into a learning sample and test sample that can be selected by the user.
+#'@usage
 #' plsda.split_sample(data,prop.train=0.75)
-#'  @param
+#'@param
 #' the dataset that we have to split
 #'@param
 #' the proportion of the training data
 #'@return
-#'\code {train} a subset matrice of data corresponding to the training sample dataset.
-#'\cr
-#'\code{test} a subset matrice of data corresponding to the test sample dataset.
-#'@examples
+#'{train} a subset matrice of data corresponding to the training sample dataset.
+#'
+#'{test} a subset matrice of data corresponding to the test sample dataset.
 
 #creation de la classe S3 split
 plsda.split_sample<-function(data,prop.train){
@@ -39,10 +38,6 @@ plsda.split_sample<-function(data,prop.train){
 
 }
 
-data(iris)
-print(iris)
-object <- plsda.split_sample(iris,prop.train=0.75)
-print(object)
 
 
 #surcharge de la méthode print de manière à ce qu’elle affiche l'échantillon test et l'échantillon train
@@ -56,6 +51,3 @@ print.split <- function(objet){
   test <- objet$test
   print(test)
 }
-
-print(object)
-

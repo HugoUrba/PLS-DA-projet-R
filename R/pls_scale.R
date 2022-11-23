@@ -42,10 +42,6 @@ plsda.scale <- function(X,reduce = FALSE){
   }
 }
 
-data(iris)
-print(iris)
-object <- plsda.scale(iris[,1:4],reduce=TRUE)
-print(object)
 
 #surcharger la méthode print
 
@@ -61,5 +57,5 @@ print.scale <- function(objet){
   print(new)
 
 }
-print(object)
+
 
