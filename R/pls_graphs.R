@@ -1,6 +1,6 @@
 library(RColorBrewer)
 
-plsda.KRIS <- function(objetPLSDA){
+plsda.scree <- function(objetPLSDA){
   X <- objetPLSDA$X
   corrX <- cor(X)
   ev <- eigen(corrX)
@@ -12,7 +12,7 @@ plsda.KRIS <- function(objetPLSDA){
                 main ="Scree plot")
 }
 
-plsda.B20 <- function(objetPLSDA){
+plsda.vmap <- function(objetPLSDA){
   X <- objetPLSDA$X
   corrX <- cor(X)
   ev <- eigen(corrX)$values
@@ -27,13 +27,13 @@ plsda.B20 <- function(objetPLSDA){
        asp = 1,
        ylab="Component 2",
        xlab="Component 1", 
-       main ="Variables on the 2 first components per modality")
+       main ="Variables on the 2 first components")
   abline(h=0,v=0)
   text(c[,1], c[,2],labels=rownames(c))
   symbols(0, 0, circles=1, inches=F, add=T)
 }
 
-plsda.NI <- function(objetPLSDA){
+plsda.Imap <- function(objetPLSDA){
   color <- apply(objetPLSDA$Y, 1, which.max)
   color <- brewer.pal(length(objetPLSDA$modalities), "Set1")[color]
   plot(objetPLSDA$Xscores[,1],
@@ -45,8 +45,4 @@ plsda.NI <- function(objetPLSDA){
   abline(h=0,v=0)
   text(objetPLSDA$Xscores[,1],objetPLSDA$Xscores[,2],labels=rownames(objetPLSDA$Xscores),cex=0.75,col = color)
 }
-objetPLSDA <- plsda.fit(Species~.,data = iris, ncomp = 3)
 
-plsda.vmap <- function(objetPLSDA){
-  
-}
