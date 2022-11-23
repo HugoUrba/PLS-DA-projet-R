@@ -48,5 +48,4 @@ plsda.predict <- function(objetPLSDA, newdata, type = "class"){
   }
 }
 
-pls <- plsda.fit(Species~., data = iris, ncomp = 2)
-plsda.predict(pls, newdata = iris[,1:4], type = "class")
+

@@ -164,3 +164,5 @@ print.classi <- function(objetPLSDA){
 summary.plsda <- function(objetPLSDA){
   
 }
+
+
