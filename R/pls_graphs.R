@@ -1,3 +1,8 @@
+
+
+
+
+
 library(RColorBrewer)
 
 plsda.scree <- function(objetPLSDA){
