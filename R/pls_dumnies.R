@@ -12,6 +12,8 @@
 #' @examples
 #' dummies.t1<-plsda.dummies(iris$Species)
 #' dummies.t2<-plsda.dummies(iris$Species,"Species")
+#'@export
+
 
 # X = Vecteur (de facteurs) à transformer
 # name = Nom de la varaiable initale

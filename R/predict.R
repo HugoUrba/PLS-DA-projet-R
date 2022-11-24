@@ -13,6 +13,8 @@
 #' @return  
 #'A column vector containing the predicted values for the target variable, according to the test dataset.
 #'
+#'@export
+
 
 plsda.predict <- function(objetPLSDA, newdata, type = "class"){
   if (class(objetPLSDA) != "PLSDA") {
@@ -47,5 +49,4 @@ plsda.predict <- function(objetPLSDA, newdata, type = "class"){
     return(objet2)
   }
 }
-
 

@@ -9,6 +9,8 @@
 #'{train} a subset matrice of data corresponding to the training sample dataset.
 #'
 #'{test} a subset matrice of data corresponding to the test sample dataset.
+#'@export
+
 
 #creation de la classe S3 split
 plsda.split_sample<-function(data,prop.train){

@@ -16,6 +16,7 @@
 #' @examples
 #'scale.t1<-plsda.scale(iris[,-5])
 #'scale.t2<-plsda.scale(iris[,-5],reduce=T)
+#'@export
 
 plsda.scale <- function(X,reduce = FALSE){
   #Check wether the matrix is numeric
@@ -40,11 +41,6 @@ plsda.scale <- function(X,reduce = FALSE){
   }
 }
 
-data(iris)
-print(iris)
-object <- plsda.scale(iris[,1:4],reduce=TRUE)
-print(object)
-
 #surcharger la méthode print
 
 print.scale <- function(objet){
@@ -59,5 +55,4 @@ print.scale <- function(objet){
   print(head(new_x))
 
 }
-print(object)
 

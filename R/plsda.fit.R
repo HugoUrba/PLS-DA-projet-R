@@ -31,6 +31,7 @@
 #' @examples
 #' #ncomp is specified
 #' fit1<-plsda.fit(Species~.,iris,ncomp=4)
+#'@export
 
 
 # APPRENTISSAGE ET CREATION DU MODELE PLSDA
