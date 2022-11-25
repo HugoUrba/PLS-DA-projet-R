@@ -4,7 +4,7 @@
 
 
 library(RColorBrewer)
-
+#'@export
 plsda.scree <- function(objetPLSDA){
   X <- objetPLSDA$X
   corrX <- cor(X)
@@ -17,6 +17,7 @@ plsda.scree <- function(objetPLSDA){
                 main ="Scree plot")
 }
 
+#'@export
 plsda.vmap <- function(objetPLSDA){
   X <- objetPLSDA$X
   corrX <- cor(X)
@@ -38,7 +39,9 @@ plsda.vmap <- function(objetPLSDA){
   symbols(0, 0, circles=1, inches=F, add=T)
 }
 
+#'@export
 plsda.Imap <- function(objetPLSDA){
+  
   color <- apply(objetPLSDA$Y, 1, which.max)
   color <- brewer.pal(length(objetPLSDA$modalities), "Set1")[color]
   plot(objetPLSDA$Xscores[,1],
