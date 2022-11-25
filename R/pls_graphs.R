@@ -1,3 +1,5 @@
+library(RColorBrewer)
+
 #'@export
 plsda.scree <- function(objetPLSDA){
   X <- objetPLSDA$X
