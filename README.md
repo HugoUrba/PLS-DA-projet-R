@@ -9,7 +9,7 @@ R package programming which allows to perform a PLS regression on a dataset
 
 * A detailed tutorial both to understand the plsda and how to manipulate fit.plsda function and predict.plsda function (cf.Wiki in the middle of Github-project navigation bar, at the top of the screen ![image](https://user-images.githubusercontent.com/114347666/204103053-18efdaba-eba9-469f-a1e0-0e409a264e2e.png)
 )
-* A detailed tutorial to know how to manpulate Rshiny App ![image](https://user-images.githubusercontent.com/114347666/204103053-18efdaba-eba9-469f-a1e0-0e409a264e2e.png)
+* A detailed tutorial to know how to manipulate Rshiny App cf. ![image](https://user-images.githubusercontent.com/114347666/204103053-18efdaba-eba9-469f-a1e0-0e409a264e2e.png)
 
 
 **Partial Least Squares(PLS) in a few bullet-points **
