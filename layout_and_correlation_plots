@@ -1,0 +1,41 @@
+library(shiny)
+library(semantic.dashboard)
+library(DT)
+
+ui <- dashboardPage(theme = 'slate',
+  dashboardHeader(title="PLS-DA"),
+  dashboardSidebar(
+    sidebarMenu(
+      menuItem("Breast_cancer",tabName = "plsda_pls1",icon=icon("heart")),
+      menuItem("your_dataset",tabName = "data",icon=icon("tree"))
+    )
+  ),
+  dashboardBody(
+    tabItems( 
+      tabItem("Breast_cancer",
+              box(plotOutput("correlation_plot"),width = 8),
+              box(
+                selectInput("features:","Features:",
+                            c("clump","ucellshape","mgadhesion","sepics","bnuclei","bchromatin","normnucl","mitoses")),width = 4
+              )
+      ),
+      tabItem("Your_dataset",
+              fluidPage(
+                h1 ("Your_dataset"),
+                dataTableOutput("Your_dataset_table")
+              )
+      )
+    )
+  )
+)
+      
+server <- function(input, output){
+  output$correlation_plot <-renderPlot({
+    plot(breast$ucellsize,breast[[input$features]],
+         xlab="ucellsize",ylab="Feature")
+  })
+  
+  output$Your_dataset_table <-renderDataTable(breast)
+}
+
+shinyApp(ui,server)
