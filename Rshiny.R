@@ -27,34 +27,50 @@ ui <- fluidPage(
         inputId = "y",
         label = "Y-axis:",
         choices = c("clump", "ucellsize", "ucellshape", "mgadhesion", "sepics","bnuclei", "bchromatin", "normnucl","mitoses","classe"),
-        selected = "classe"
-      ),
+        selected = "classe"),
+      
       # Select variable for x-axis
       selectInput(
         inputId = "x",
         label = "X-axis:",
         choices = c("clump", "ucellsize", "ucellshape", "mgadhesion", "sepics","bnuclei", "bchromatin", "normnucl","mitoses","classe"),
-        selected = "clump"
-      )
+        selected = "clump"),
+      # Show data table 
+      checkboxInput(inputId = "show_data",
+                    label = "Show data table", value = TRUE)   
+      
     ),
     
     # Main panel for displaying outputs ----
     mainPanel(
       
       # Output: Scree plot ----
-      plotOutput(outputId = "Screeplot")
+      plotOutput(outputId = "Screeplot"),
+      # Show data table
+      DT::dataTableOutput(outputId = "table")
+      
       
     )
   )
 )
+
+
 
 # Define server logic required to draw a scree plot ----
 server <- function(input, output) {
   output$Screeplot <- renderPlot({
     plsda.scree(fit)
   })
-}  
+} 
+
+# Define server to show data table  ----------------------------------------------------------------
+server <- function(input, output) {
+  output$table = DT::renderDataTable({
+    breast
+  })
+}
 
 
 # Create Shiny app ----
 shinyApp(ui = ui, server = server)
+
