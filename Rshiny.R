@@ -1,3 +1,9 @@
+library(shiny)
+library(shinyWidgets)
+library(dplyr)
+
+
+
 breast <- read.xlsx("C:/Users/HP/Downloads/breast-cancer-pls-da.xlsx",sheetIndex=1,header=T)
 print(breast)
 
