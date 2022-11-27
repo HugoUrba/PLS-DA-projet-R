@@ -18,7 +18,7 @@ R package programming which allows to perform a PLS regression on a dataset
 
 * Because both the X and Y data are projected to new spaces, the PLS family of methods are known as bilinear factor models. 
 
-* Partial least squares Discriminant Analysis (PLS-DA) is a variant used when the Y is categorical.
+* **Partial least squares Discriminant Analysis (PLS-DA)** is a variant used when the Y is categorical.
 
 * PLS regression, like PCA, seeks to find components which maximize the variability of predictors but differs from PCA as PLS requires the components to have maximum correlation with the response. PLS is a supervised procedure whereas PCA is unsupervised.
 
