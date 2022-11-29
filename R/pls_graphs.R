@@ -1,4 +1,7 @@
-library(RColorBrewer)
+if (!("RColorBrewer" %in% installed.packages())){
+  install.packages("RColorBrewer")
+}
+library("RColorBrewer")
 
 #'@export
 plsda.scree <- function(objetPLSDA){
@@ -6,6 +9,7 @@ plsda.scree <- function(objetPLSDA){
   corrX <- cor(X)
   ev <- eigen(corrX)
   ev1 = ev$values
+  
   scree <- plot(ev1,
                 type="b",
                 ylab="Eigen values",
@@ -37,8 +41,6 @@ plsda.vmap <- function(objetPLSDA){
 
 #'@export
 plsda.Imap <- function(objetPLSDA){
-  
-  library(RColorBrewer)
   color <- apply(objetPLSDA$Y, 1, which.max)
   color <- brewer.pal(length(objetPLSDA$modalities), "Set1")[color]
   plot(objetPLSDA$Xscores[,1],
@@ -51,6 +53,7 @@ plsda.Imap <- function(objetPLSDA){
   text(objetPLSDA$Xscores[,1],objetPLSDA$Xscores[,2],labels=rownames(objetPLSDA$Xscores),cex=0.75,col = color)
 }
 
+#'@export
 plotx <- function(objetPLSDA, x, y){
   
   color <- apply(objetPLSDA$Y, 1, which.max)
@@ -58,5 +61,3 @@ plotx <- function(objetPLSDA, x, y){
   
   plot(objetPLSDA$X[,x], objetPLSDA$X[,2], type = "p", col=color, pch = 18)
 }
-
-iris
