@@ -34,7 +34,7 @@
 #'@export
 
 
-# APPRENTISSAGE ET CREATION DU MODELE PLSDA
+# LEARNING AND CREATION OF THE PLSDA MODEL
 plsda.fit<-function(formula, data, ncomp = 2){
   
   #check if the entry is a formula Y~X
