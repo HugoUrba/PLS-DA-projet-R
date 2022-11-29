@@ -51,6 +51,12 @@ plsda.Imap <- function(objetPLSDA){
   text(objetPLSDA$Xscores[,1],objetPLSDA$Xscores[,2],labels=rownames(objetPLSDA$Xscores),cex=0.75,col = color)
 }
 
-plotx <- function(objetPLSDA,){
-  plot()
+plotx <- function(objetPLSDA, x, y){
+  
+  color <- apply(objetPLSDA$Y, 1, which.max)
+  color <- brewer.pal(length(objetPLSDA$modalities), "Set1")[color]
+  
+  plot(objetPLSDA$X[,x], objetPLSDA$X[,2], type = "p", col=color, pch = 18)
 }
+
+iris
