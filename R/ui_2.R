@@ -9,7 +9,7 @@ ui <- dashboardPage(
       menuItem("select the target variable", tabName = "y"),
       selectInput(
         inputId = "y",
-        #label = "y:",
+        label = "y:",
         choices = c("clump", "ucellsize", "ucellshape", "mgadhesion", "sepics","bnuclei", "bchromatin", "normnucl","mitoses","classe"),
         selected = "clump"),
       menuItem("select explicative variables", tabName = "x"),
@@ -74,13 +74,6 @@ ui <- dashboardPage(
               h2("Exploration du tableau"),
               dataTableOutput('dataTable')
       ),
-      #afficher x 
-      tabItem(tabName='x',
-              h1("explicative variables")),
-      #afficher y
-      tabItem(tabName='y',
-              h1("target variable")),
-      
       
       #fit the model
       tabItem(tabName = "fit",
@@ -98,5 +91,8 @@ ui <- dashboardPage(
     )
   )
 )
+
+
+
 
 
