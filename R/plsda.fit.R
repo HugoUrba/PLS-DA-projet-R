@@ -154,16 +154,23 @@ plsda.fit<-function(formula, data, ncomp = 2){
   return(objet)
 }
 
-print.classi <- function(objetPLSDA){
+print.PLSDA <- function(objetPLSDA){
   classification <- rbind(objetPLSDA$coef, objetPLSDA$intercept)
-  #rownames(classification[1:p,]) <- objetPLSDA$Xname 
   
-  cat("classification","\n")
+  cat("classification :","\n")
   print(classification)
 }
 
-summary.plsda <- function(objetPLSDA){
-  
+summary.PLSDA <- function(objetPLSDA){
+  objetpred = plsda.predict(objetPLSDA, objetPLSDA$X, type = "class")
+  Y = as.factor(objetPLSDA$modalities[apply(objetPLSDA$Y,1,which.max)])
+  mc = table(objetpred, Y) 
+  accuracy = sum(diag(mc)) / sum(mc)
+  print(objetPLSDA)
+  cat("\nConfusion :","\n")
+  print(mc)
+  cat("\nAccuracy :","\n")
+  print(accuracy)
 }
 
 

@@ -39,10 +39,7 @@ plsda.predict <- function(objetPLSDA, newdata, type = "class"){
   else if (type == "class"){
     pred <- apply(Ysoftmax,1,which.max) # prob max per line
     classYpred <- objetPLSDA$modalities[pred] # name of the class
-    objet2 <- list(
-      "predclass"=as.matrix(as.factor(classYpred))
-    )
     
-    return(objet2)
+    return(as.factor(classYpred))
   }
 }
