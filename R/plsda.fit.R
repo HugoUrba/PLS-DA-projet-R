@@ -100,7 +100,7 @@ plsda.fit<-function(formula, data, ncomp = 2){
     
     #fill in the matrixes
     Xweights[, i] <- W 
-    Yweights[, i] <- q *
+    Yweights[, i] <- q 
     Xscores[, i] <- t
     Yscores[, i] <- u
     Xloadings[, i] <- Xl
