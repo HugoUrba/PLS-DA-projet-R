@@ -19,16 +19,21 @@ plsda.predict <- function(objetPLSDA, newdata, type = "class"){
     stop("Objet_PLSDA must be a PLSDA class Object")
   }
   
+  #Creating X by applying the function x
   X <- apply(newdata, 1, function(x) x - colMeans(objetPLSDA$X))
   X <- X/apply(objetPLSDA$X,2, sd)
   
+  #calcus to get the softmax function
   Ypred <- t(X) %*% objetPLSDA$coef
   Ypred <- Ypred + colMeans(objetPLSDA$Y)
   
-  
+  #apply the exponential function
   Yexp <- apply(Ypred,1, exp)
-  Ysoftmax <- t(Yexp/colSums(Yexp)) #softmax calculs
   
+  #softmax calculs
+  Ysoftmax <- t(Yexp/colSums(Yexp))
+  
+  #for the type posterior, returning the probabality of being for each modality
   if (type == "posterior"){
     objet1 <- list(
       "Yprob"=Ysoftmax,
@@ -36,10 +41,17 @@ plsda.predict <- function(objetPLSDA, newdata, type = "class"){
     )
     return(objet1)
   }
+  
+  #for the type class
   else if (type == "class"){
-    pred <- apply(Ysoftmax,1,which.max) # prob max per line
-    classYpred <- objetPLSDA$modalities[pred] # name of the class
     
+    #putting one to the modality column with the highest probability
+    pred <- apply(Ysoftmax,1,which.max)
+    
+    #replace the ones with the modality name
+    classYpred <- objetPLSDA$modalities[pred] 
+    
+    #getting the return as a factor
     return(as.factor(classYpred))
   }
 }
