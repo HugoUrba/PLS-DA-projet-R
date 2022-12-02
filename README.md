@@ -24,3 +24,5 @@ R package programming which allows to perform a PLS regression on a dataset
 
 * In order to explain Y variables from X explanatory variables, the descriptors are summarized into a series of 2X2 orthogonal factors  th  (factorial axes, latent variables, X-scores). As well, Y variables / targets to be explained and predicted are summarized into a series of components uh (scores Y).
 During the modeling process, the PLS regression will construct the series of factors (uh, th) so that their covariance is maximum. The number of factors cannot exceed the number of explanatory variables. 
+
+#You can directly import our package for R from GitHub or by downloading the attached package.tar.gz
