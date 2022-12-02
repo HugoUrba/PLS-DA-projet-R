@@ -5,6 +5,17 @@ if (!("RColorBrewer" %in% installed.packages())){
 }
 library("RColorBrewer")
 
+
+#' Displays the plot scree of the components importance
+#'
+#' This function displays a screeplot on which we can see the importance of each component by calculating their eigenvalues.
+#' @usage
+#' plsda.scree(PLSDAObject)
+#' @param
+#' PLSDAObject, an object returned by the function plsda.fit, the model the user is using.
+#' @return
+#' The function returns a screeplot, with the components on the abscissa axis and their eigen values on the ordinate axis.
+
 #'@export
 
 
@@ -29,8 +40,16 @@ plsda.scree <- function(objetPLSDA){
                 main ="Scree plot")
 }
 
-#'@export
+#' Displays the map of the explicative variables
 #'
+#' This function displays a screeplot on which we can see the importance of each component by calculating their eigenvalues.
+#' @usage
+#' plsda.vmap(PLSDAObject)
+#' @param
+#' PLSDAObject, an object returned by the function plsda.fit, the model the user is using.
+#' @return
+#' The function returns a .
+#'@export
 
 #function for the variables map
 plsda.vmap <- function(objetPLSDA){
@@ -69,8 +88,16 @@ plsda.vmap <- function(objetPLSDA){
   symbols(0, 0, circles=1, inches=F, add=T)
 }
 
-#'@export
+#' Displays the map of the individuals
 #'
+#' This function displays a.
+#' @usage
+#' plsda.Imap(PLSDAObject)
+#' @param
+#' PLSDAObject, an object returned by the function plsda.fit, the model the user is using.
+#' @return
+#' The function returns a screeplot, with the components on the abscissa axis and their eigen values on the ordinate axis.
+#'@export
 
 #function for the individuals map
 plsda.Imap <- function(objetPLSDA){
@@ -91,6 +118,15 @@ plsda.Imap <- function(objetPLSDA){
   text(objetPLSDA$Xscores[,1],objetPLSDA$Xscores[,2],labels=rownames(objetPLSDA$Xscores),cex=0.75,col = color)
 }
 
+#' Displays the map of the explicative variables
+#'
+#' This function displays a screeplot on which we can see the importance of each component by calculating their eigenvalues.
+#' @usage
+#' plsda.plotx(PLSDAObject)
+#' @param
+#' PLSDAObject, an object returned by the function plsda.fit, the model the user is using.
+#' @return
+#' The function returns a screeplot, with the components on the abscissa axis and their eigen values on the ordinate axis.
 #'@export
 
 #function for the importance of the explicative variables

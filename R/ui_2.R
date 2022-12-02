@@ -10,20 +10,16 @@ ui <- dashboardPage(
       selectInput(
         inputId = "y",
         label = "y:",
-        choices = c("clump", "ucellsize", "ucellshape", "mgadhesion", "sepics","bnuclei", "bchromatin", "normnucl","mitoses","classe"),
-        selected = "clump"),
+        choices = c()),
       menuItem("select explicative variables", tabName = "x"),
       selectInput(
         inputId = "x",
         label = "X:",
-        choices = c("clump", "ucellsize", "ucellshape", "mgadhesion", "sepics","bnuclei", "bchromatin", "normnucl","mitoses","classe"),
-        selected = "clump",multiple=TRUE),
-      actionButton("viewx", "Submit X Selection"),
-      br(),
-      br(),
-      actionButton("viewy", "Submit Y Selection"),
-      
+        choices = c(),
+        multiple=TRUE),
+      actionButton("submitSelection", "Submit Selection"),
       menuItem("fit the model", tabName = "fit"),
+      menuItem("Data for prediction", tabName = "dataPred"),
       menuItem("Predict", tabName = "pred"),
       menuItem("graphiques", tabName = "graphiques", icon = icon("poll"))
     )
@@ -67,26 +63,72 @@ ui <- dashboardPage(
               
       ),
       
-
-      #visualisation des données 
-      tabItem(tabName = "visualization",
-              h1("Visualisation des données"),
-              h2("Exploration du tableau"),
-              dataTableOutput('dataTable')
-      ),
-      
       #fit the model
       tabItem(tabName = "fit",
-              h1("fit the model")
-      ),
-      #predict the model
-      tabItem(tabName = "pred",
-              h1("predict the model")
+              h1("Fit the model"),
+              actionButton("launchFit", "Start Fit"),
+              verbatimTextOutput("fitResults"),
+              h4(radioButtons("fitSelect", "Results of Fit Training",
+                              choices = c(Coefficients = "coef",
+                                          Intercept = "intercept",
+                                          X_weights = "Xweights",
+                                          Y_weights="Yweigths",
+                                          X_loadings="Xloadings",
+                                          Y_loadings="Yloadings",
+                                          X_scores="Xscores",
+                                          Y_scores="Yscores",
+                                          Modalities = "modalities",
+                                          Ncomp = "ncomp"))),
+              verbatimTextOutput("fitResultsSelect")
       ),
       
+      
+      tabItem(tabName = "dataPred",
+              
+              h1("Lecture des données à prédire"),
+              fileInput("dataFile2",label = NULL,
+                        buttonLabel = "Browse...",
+                        placeholder = "No file selected"),
+              
+              h3("Parameters"),
+              
+              # Input: Checkbox if file has header
+              radioButtons("header2", 
+                           label = "Header",
+                           choices = c("Yes" = TRUE,
+                                       "No" = FALSE),
+                           selected = TRUE, inline=T),
+              
+              # Input: Select separator ----
+              radioButtons("sep2", 
+                           label = "Separator",
+                           choices = c(Comma = ",",
+                                       Semicolon = ";",
+                                       Tab = "\t"),
+                           selected = ";", inline=T),
+              
+              # Input: Select quotes ----
+              radioButtons("quote2", 
+                           label= "Quote",
+                           choices = c(None = "",
+                                       "Double Quote" = '"',
+                                       "Single Quote" = "'"),
+                           selected = "", inline=T),
+              #créer une zone d'affichage 
+              h3("File preview"),
+              dataTableOutput(outputId = "preview2")
+      ),
+      
+      #predict the data
+      tabItem(tabName = "pred",
+              h1("Predict the new data"),
+              actionButton("submitPred", "Submit for prediction"),
+              verbatimTextOutput("predResults")
+      ),
+              
       # visualization
-      tabItem(tabName = "graphiques",
-              h1("graphiques")
+      tabItem(tabName = "graphics",
+              h1("Graphics")
       )
     )
   )
