@@ -11,6 +11,8 @@ R package programming which allows to perform a PLS regression on a dataset
 )
 * A detailed tutorial to know how to manipulate Rshiny App cf. ![image](https://user-images.githubusercontent.com/114347666/204103053-18efdaba-eba9-469f-a1e0-0e409a264e2e.png)
 
+* A report explaining the PLS regression from a mathematical point of view, with the naming of bibliographical sources. 
+
 
 **Partial Least Squares(PLS) in a few bullet-points **
 

@@ -99,7 +99,7 @@ plsda.fit<-function(formula, data, ncomp = 2){
     Yk <- Yk-t%*%t(Yl)
     
     #fill in the matrixes
-    Xweights[, i] <- W 
+    Xweights[, i] <- W
     Yweights[, i] <- q
     Xscores[, i] <- t
     Yscores[, i] <- u

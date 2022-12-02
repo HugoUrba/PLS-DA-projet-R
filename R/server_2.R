@@ -65,7 +65,6 @@ server <- function(input, output, session) {
     PLSpredict()[1:min(length(PLSpredict()), 100)]
   })
   
-}  
+}
 
 shinyApp(ui, server)
-
