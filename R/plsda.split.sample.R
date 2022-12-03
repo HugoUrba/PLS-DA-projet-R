@@ -42,11 +42,11 @@ plsda.split.sample<-function(data,prop.train){
 
 #overloading of the native print() function in order to display sample breakdown by train and test
 print.split <- function(objet){
-  #affichage de l'échantillon train
+  #display of the train sample
   cat("train","\n")
   train <-  objet$train
   print(train)
-  #affichage de l'échantillon test
+  #display of the test sample
   cat("test","\n")
   test <- objet$test
   print(test)
