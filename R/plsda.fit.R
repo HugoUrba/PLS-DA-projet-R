@@ -196,4 +196,3 @@ summary.PLSDA <- function(objetPLSDA){
   print(accuracy)
 }
 
-
