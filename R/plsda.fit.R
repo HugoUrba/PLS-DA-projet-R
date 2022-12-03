@@ -63,7 +63,7 @@ plsda.fit<-function(formula, data, ncomp = 2){
   q <- nlevels(Y)
   
   #collection of the Y dummies-matrix
-  Yb <- as.data.frame(plsda.dumnies(Y)$dum)
+  Yb <- as.data.frame(plsda.dummies(Y)$dum)
   
   #scaling of X and Y
   Xk <- scale(X)
