@@ -67,4 +67,7 @@ server <- function(input, output, session) {
   
 }
 
-shinyApp(ui, server)
+launchApp <- function(ui = ui, server = server){
+  shinyApp(ui, server)
+}
+
