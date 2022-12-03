@@ -40,7 +40,6 @@ plsda.split.sample<-function(data,prop.train){
 }
 
 
-
 #overloading of the native print() function in order to display sample breakdown by train and test
 print.split <- function(objet){
   #affichage de l'échantillon train
