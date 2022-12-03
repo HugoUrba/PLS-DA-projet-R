@@ -24,3 +24,8 @@ A column vector containing the predicted values for the target variable, accordi
 Predict function
 It is used either to predict the modality of a target variable depending on the explanatory variables.
 }
+\examples{
+pred <- plsda.predict(fit1,iris$test, type='class')
+pred <- plsda.predict(fit1,iris$test, type='posterior')
+
+}
