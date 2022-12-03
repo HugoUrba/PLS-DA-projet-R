@@ -52,6 +52,11 @@ plsda.fit<-function(formula, data, ncomp = 2){
   Y <- model.response(model.frame(formula, data = data)) #
   Y <- as.factor(as.vector(Y)) #
   
+  # Check if response variable contains at least 2 levels
+  if(nlevels(Y)<2){
+  stop("The response variable must contain at least 2 levels")
+  }
+  
   Xname <- colnames(X) #naming X columns
   
   #calculation of Xmeans
