@@ -26,7 +26,10 @@ server <- function(input, output, session) {
     Y <- input$y
     
     formula1 <- as.formula(paste(Y, "~", paste(X, collapse = " + ")))
-    
+  })
+  
+  observeEvent({input$submitSelection},{
+    updateTabItems(session, "menu", selected = "fit")
   })
   
   PLSfit <- eventReactive({input$launchFit}, {
@@ -54,7 +57,8 @@ server <- function(input, output, session) {
   
   output$preview2 <-  renderDataTable({
     table2()
-  },  options = list(scrollX = TRUE , dom = 't'))
+  },  options = list(scrollX = TRUE , dom = 't')
+  )
   
   PLSpredict <- eventReactive({input$submitPred}, {
     objectpred <- plsda.predict(PLSfit(), table2()[,input$x])
@@ -62,6 +66,23 @@ server <- function(input, output, session) {
   
   output$predResults <- renderPrint({
     PLSpredict()[1:min(length(PLSpredict()), 100)]
+  })
+  
+  PLSgraphic <- eventReactive({input$graphSelect},{
+    req(PLSfit())
+    if(input$graphSelect == "scree"){
+      p <- plsda.scree(PLSfit())
+    }
+    if(input$graphSelect == "ind"){
+      p <- plsda.Imap(PLSfit())
+    }
+    if(input$graphSelect == "var"){
+      p <- plsda.vmap(PLSfit())
+    }
+  })
+  
+  output$graphResults <- renderPlot({
+    PLSgraphic()
   })
   
 }

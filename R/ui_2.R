@@ -2,7 +2,7 @@ ui <- function(){
   dashboardPage(
     dashboardHeader(title = "PLSDA Package"),
     dashboardSidebar(
-      sidebarMenu(
+      sidebarMenu(id="menu", 
         menuItem("importation du data base", tabName = "readData", icon = icon("readme")),
         menuItem("select the target variable", tabName = "y"),
         selectInput(
@@ -19,7 +19,7 @@ ui <- function(){
         menuItem("fit the model", tabName = "fit"),
         menuItem("Data for prediction", tabName = "dataPred"),
         menuItem("Predict", tabName = "pred"),
-        menuItem("graphiques", tabName = "graphiques", icon = icon("poll"))
+        menuItem("Graphics", tabName = "graphics", icon = icon("poll"))
       )
     ),
     dashboardBody(
@@ -126,7 +126,12 @@ ui <- function(){
                 
         # visualization
         tabItem(tabName = "graphics",
-                h1("Graphics")
+                h1("Graphics"),
+                h4(radioButtons("graphSelect", "Select graphic",
+                                choices = c(Scree = "scree",
+                                            Individuals = "ind",
+                                            Variables = "var"))),
+                plotOutput("graphResults")
         )
       )
     )
