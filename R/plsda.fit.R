@@ -38,8 +38,11 @@ plsda.fit<-function(formula, data, ncomp = 2){
     stop("formula must be R formula !")
   }
   
+  #collection of the target variable name
+  Yname <- intersect(all.vars(formula)[1],colnames(data)) #naming Y column
+  
   #Check whether the name of Y is fulfilled
-  if (Y_name=="character(0)"){
+  if (Yname=="character(0)"){
     stop("No target name fulfilled")
   }
     
@@ -49,9 +52,7 @@ plsda.fit<-function(formula, data, ncomp = 2){
   Y <- model.response(model.frame(formula, data = data)) #
   Y <- as.factor(as.vector(Y)) #
   
-  #collection of the target variable name
   Xname <- colnames(X) #naming X columns
-  Yname <- intersect(all.vars(formula)[1],colnames(data)) #naming Y column
   
   #calculation of Xmeans
   Xmeans <- colMeans(X)
