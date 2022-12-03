@@ -5,14 +5,14 @@ if (!("RColorBrewer" %in% installed.packages())){
 }
 library("RColorBrewer")
 
-
+#'plsda.graphs displays main help-making-decisions plots
 #' Displays the plot scree of the components importance
 #'
 #' This function displays a screeplot on which we can see the importance of each component by calculating their eigenvalues.
 #' @usage
-#' plsda.scree(PLSDAObject)
+#' plsda.scree(objectPLSDA)
 #' @param
-#' PLSDAObject, an object returned by the function plsda.fit, the model the user is using.
+#' objectPLSDA, an object returned by the function plsda.fit, the model the user is using.
 #' @return
 #' The function returns a screeplot, with the components on the abscissa axis and their eigen values on the ordinate axis.
 
@@ -22,7 +22,7 @@ library("RColorBrewer")
 #function for the screeplot
 plsda.scree <- function(objetPLSDA){
   
-  #getting the explicative variables matrix from the PLSDA object
+  #getting the explanatory variables matrix from the PLSDA object
   X <- objetPLSDA$X
   
   #Correlation matrix of X
@@ -40,21 +40,21 @@ plsda.scree <- function(objetPLSDA){
                 main ="Scree plot")
 }
 
-#' Displays the map of the explicative variables
+#' Displays the map of the explanatory variables
 #'
 #' This function displays a screeplot on which we can see the importance of each component by calculating their eigenvalues.
 #' @usage
-#' plsda.vmap(PLSDAObject)
+#' plsda.vmap(objetPLSDA)
 #' @param
-#' PLSDAObject, an object returned by the function plsda.fit, the model the user is using.
+#' PLSDAObject, an object returned by the function plsda.fit.
 #' @return
-#' The function returns a .
+#' The function returns a screeplot.
 #'@export
 
 #function for the variables map
 plsda.vmap <- function(objetPLSDA){
   
-  #getting the explicative variables matrix from the PLSDA Object
+  #getting the explanatory variables matrix from the objectPLSDA
   X <- objetPLSDA$X
   
   #getting the eigen values of X
@@ -64,7 +64,7 @@ plsda.vmap <- function(objetPLSDA){
   #getting the square root of the eigen values
   et <- sqrt(ev)[1:2]
   
-  #getting the loadings of X from the PLSDA Object
+  #getting the loadings of X from the objectPLSDA
   lx <- objetPLSDA$Xloadings[,1:2]
   
   #multiplying the Xloadings with et
@@ -90,13 +90,13 @@ plsda.vmap <- function(objetPLSDA){
 
 #' Displays the map of the individuals
 #'
-#' This function displays a.
+#' This function displays a plot.
 #' @usage
-#' plsda.Imap(PLSDAObject)
+#' plsda.Imap(objetPLSDA)
 #' @param
-#' PLSDAObject, an object returned by the function plsda.fit, the model the user is using.
+#' objetPLSDA, an object returned by the function plsda.fit.
 #' @return
-#' The function returns a screeplot, with the components on the abscissa axis and their eigen values on the ordinate axis.
+#' The function returns returns the map of the individuals.
 #'@export
 
 #function for the individuals map
@@ -118,16 +118,17 @@ plsda.Imap <- function(objetPLSDA){
   text(objetPLSDA$Xscores[,1],objetPLSDA$Xscores[,2],labels=rownames(objetPLSDA$Xscores),cex=0.75,col = color)
 }
 
-#' Displays the map of the explicative variables
+#' Displays the map of the explanatory variables
 #'
-#' This function displays a screeplot on which we can see the importance of each component by calculating their eigenvalues.
 #' @usage
-#' plsda.plotx(PLSDAObject)
+#' plsda.plotx(objetPLSDA)
 #' @param
-#' PLSDAObject, an object returned by the function plsda.fit, the model the user is using.
+#'objetPLSDA, an object returned by the function plsda.fit.
 #' @return
-#' The function returns a screeplot, with the components on the abscissa axis and their eigen values on the ordinate axis.
+#' The function returns the map of the explanatory variables.
 #'@export
+
+#function for the importance of the explanatory variables
 
 #function for the importance of the explicative variables
 plotx <- function(objetPLSDA, x, y){
