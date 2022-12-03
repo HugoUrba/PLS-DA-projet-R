@@ -41,7 +41,7 @@ plsda.scale <- function(X,reduce = FALSE){
   }
 }
 
-#surcharger la méthode print
+#Overloading of the native print( ) function
 
 print.scale <- function(objet){
   cat("New column mean (should be around 0)",":")
