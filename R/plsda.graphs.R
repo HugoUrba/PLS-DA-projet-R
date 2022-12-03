@@ -42,7 +42,7 @@ plsda.scree <- function(objetPLSDA){
 
 #' Displays the map of the explanatory variables
 #'
-#' This function displays a screeplot on which we can see the importance of each component by calculating their eigenvalues.
+#' This function displays a screeplot on which we can see the importance of each explanatory variable each explanatory variable by multiplying the square root of their eigenvalues with their loadings (Xloadings).
 #' @usage
 #' plsda.vmap(objetPLSDA)
 #' @param
@@ -96,7 +96,7 @@ plsda.vmap <- function(objetPLSDA){
 #' @param
 #' objetPLSDA, an object returned by the function plsda.fit.
 #' @return
-#' The function returns returns the map of the individuals.
+#' The function returns the map of the individuals.
 #'@export
 
 #function for the individuals map
@@ -130,7 +130,7 @@ plsda.Imap <- function(objetPLSDA){
 
 #function for the importance of the explanatory variables
 
-#function for the importance of the explicative variables
+#function for the importance of the explanatory variables
 plotx <- function(objetPLSDA, x, y){
   
   color <- apply(objetPLSDA$Y, 1, which.max)
