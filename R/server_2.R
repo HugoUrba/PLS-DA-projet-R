@@ -69,6 +69,7 @@ server <- function(input, output, session) {
 #'@export
 launchApp <- function(){
   library(shiny)
+  library(shinydashboard)
   shinyApp(ui, server)
 }
 
