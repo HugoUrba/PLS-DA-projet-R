@@ -1,4 +1,4 @@
-#'this function allows to center and reduce the matrix or the numerical vector X of the predictive variables if \code {reduce = T}.
+#'this function allows to center and reduce the matrix or the numerical vector X of the predictive variables.
 #' @usage
 #' plsda.scale(X,reduce = F)
 #' @param
