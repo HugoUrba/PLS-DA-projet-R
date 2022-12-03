@@ -96,7 +96,7 @@ plsda.vmap <- function(objetPLSDA){
 plsda.Imap <- function(objetPLSDA){
   
   color <- apply(objetPLSDA$Y, 1, which.max)
-  color <- brewer.pal(length(objetPLSDA$modalities), "Set1")[color]
+  color <- RColorBrewer::brewer.pal(length(objetPLSDA$modalities), "Set1")[color]
   
   #creating the plot
   plot(objetPLSDA$Xscores[,1],
@@ -127,7 +127,7 @@ plsda.Imap <- function(objetPLSDA){
 plotx <- function(objetPLSDA, x, y){
   
   color <- apply(objetPLSDA$Y, 1, which.max)
-  color <- brewer.pal(length(objetPLSDA$modalities), "Set1")[color]
+  color <- RColorBrewer::brewer.pal(length(objetPLSDA$modalities), "Set1")[color]
   
   plot(objetPLSDA$X[,x], objetPLSDA$X[,2], type = "p", col=color, pch = 18)
 }
