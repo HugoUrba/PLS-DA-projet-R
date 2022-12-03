@@ -8,5 +8,4 @@ if (!("RColorBrewer" %in% installed.packages())){
   install.packages("shinydashboard")
 }
 library(RColorBrewer)
-library(shiny)
-library(shinydashboard)
+
