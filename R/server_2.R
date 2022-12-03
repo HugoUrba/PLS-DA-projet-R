@@ -1,4 +1,3 @@
-
 server <- function(input, output, session) {
   table <- reactive({
     
@@ -68,7 +67,8 @@ server <- function(input, output, session) {
 }
 
 #'@export
-launchApp <- function(ui = ui, server = server){
+launchApp <- function(){
+  library(shiny)
   shinyApp(ui, server)
 }
 

@@ -1,5 +1,4 @@
 library(devtools)
-Sys.setenv(GITHUB_PAT = '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')
+Sys.setenv(GITHUB_PAT = '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')
 install_github("HugoUrba/PLS-DA-projet-R", force = T)
 library(PLS)
-launchApp()
