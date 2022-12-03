@@ -3,7 +3,7 @@ ui <- function(){
     dashboardHeader(title = "PLSDA Package"),
     dashboardSidebar(
       sidebarMenu(id="menu", 
-        menuItem("importation du data base", tabName = "readData", icon = icon("readme")),
+        menuItem("import training data", tabName = "readData", icon = icon("readme")),
         menuItem("select the target variable", tabName = "y"),
         selectInput(
           inputId = "y",
