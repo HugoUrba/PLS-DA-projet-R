@@ -1,12 +1,12 @@
 #' Predict function
-#' It is used either to predict the modality of a target variable depending on the explanatory variables.
+#' It is used to predict the modality of a target variable depending on the explanatory variables.
 #' @param
 #' objetPLSDA, an object belonging to the class PLSDA, an object which was returned by the fit function. 
-#' The model obtained with our train dataset
+#' The model obtained from the train dataset
 #' @param 
-#' newdata, the test dataset, with a number of observation and values for each explanatory variable. 
+#' newdata, the test dataset, with a number of observations and values for each explanatory variable. 
 #' @param
-#' type, the type of prediction we want. If the type is posterior, the function returns 
+#' type, the type of the requested prediction. If the type is posterior, the function returns 
 #' the probability of belonging to each modality.
 #' If the type is class, the function returns the modality predicted for each observation.   
 #'
@@ -21,12 +21,16 @@ plsda.predict <- function(objetPLSDA, newdata, type = "class"){
   if (class(objetPLSDA) != "PLSDA") {
     stop("Objet_PLSDA must be a PLSDA class Object")
   }
+  ok <-(is.data.frame(newdata) | is.matrix(newdata))
+    if (!ok){
+      stop("newdata should be a test sample, in a dataframe or a matrix format ")
+  }      
   
-  #Creating X by applying the function x
+  #collection of X by applying the function x
   X <- apply(newdata, 1, function(x) x - colMeans(objetPLSDA$X))
   X <- X/apply(objetPLSDA$X,2, sd)
   
-  #calcus to get the softmax function
+  #calculations to get the softmax function
   Ypred <- t(X) %*% objetPLSDA$coef
   Ypred <- Ypred + colMeans(objetPLSDA$Y)
   
@@ -36,7 +40,7 @@ plsda.predict <- function(objetPLSDA, newdata, type = "class"){
   #softmax calculs
   Ysoftmax <- t(Yexp/colSums(Yexp))
   
-  #for the type posterior, returning the probabality of being for each modality
+  #for the type posterior, returning the probability for each modality
   if (type == "posterior"){
     objet1 <- list(
       "Yprob"=Ysoftmax,
