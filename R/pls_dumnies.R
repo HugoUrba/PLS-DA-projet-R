@@ -1,4 +1,4 @@
-# transform a Factor to Dummy Matrix
+# Transform a Factor into a dummies-Matrix
 #'
 #' This function transforms a vector of \code{p} factors into a matrix of \code{p} dummies variables.
 #' @usage
@@ -15,24 +15,24 @@
 #'@export
 
 
-# X = Vecteur (de facteurs) à transformer
-# name = Nom de la varaiable initale
-plsda.dumnies <- function (X,name){
+# X =  Vector of factors to be transformed
+# name = name of the initial variable
+plsda.dummies <- function (X,name){
   instance <- list()
   # renvoyer la colonne spécifiée X en tant que facteur plutôt que numérique.
   instance$fX<- as.factor(as.vector(X))
-  # les Modalités du facteur
+  # Factor levels / modalities
   instance$levels <- levels(instance$fX)
-  # Matrice d'indicatrice
+  # Matrix of indicators
   instance$dum <- sapply(instance$levels,function(x){ifelse(instance$fX==x,1,0)})
   class(instance) <- "dumnies"
   return(instance)
 }
 
 
-#surcharger la méthode print pour afficher la matrice des variables indicatrices
+#Native print( ) function overloaded to display the matrix of indicator variables
 
-print.dumnies <- function(objet){
+print.dummies <- function(objet){
   cat("dumny species ","\n")
   dumny <- as.matrix(objet$dum)
   print(dumny)
