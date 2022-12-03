@@ -1,10 +1,3 @@
-
-#install rcolorBrewer if it is not installed yet
-if (!("RColorBrewer" %in% installed.packages())){
-  install.packages("RColorBrewer")
-}
-library("RColorBrewer")
-
 #'plsda.graphs displays main help-making-decisions plots
 #' Displays the plot scree of the components importance
 #'
