@@ -12,6 +12,9 @@
 #'
 #' @return  
 #'A column vector containing the predicted values for the target variable, according to the test dataset.
+#' @examples 
+#'pred <- plsda.predict(fit1,iris$test, type='class')
+#'pred <- plsda.predict(fit1,iris$test, type='posterior')
 #'
 #'@export
 plsda.predict <- function(objetPLSDA, newdata, type = "class"){
