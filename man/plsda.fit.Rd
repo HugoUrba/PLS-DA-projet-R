@@ -8,13 +8,12 @@
 plsda.fit(formula, data, ncomp = 2)
 }
 \arguments{
-\item{formula, }{an object of class formula: a symbolic description of the model
-to be fitted. The details of model specification are given under ‘Details'.}
+\item{formula, }{}
 
 \item{data, }{the dataframe containing the variables in the model.}
 
 \item{ncomp, }{the number of components extracted in NIPALS algorithm, an integer
-comprised between 1 and the number of explanatory variables.}
+comprised between 1 and the number of explanatory variables. It is fixed at 2 if you do not precise.}
 }
 \value{
 An object of class 'PLSDA' containing the following components :
@@ -39,8 +38,4 @@ to have the final coefficients of PLS-DA.
 \description{
 PLS-DA
 {plsda.fit} is used to fit a PLS-DA regression model.
-}
-\examples{
-#ncomp is specified
-fit1<-plsda.fit(Species~.,iris,ncomp=4)
 }
