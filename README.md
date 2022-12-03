@@ -3,7 +3,7 @@ R package programming which allows to perform a PLS regression on a dataset
 
 **Deliverables:**
 
-* Design of a **Partial Least Squares Discriminant Analysis algorithm (PLSDA) ** with overload of some native S3 functions (print() and summary())
+* Design of a **Partial Least Squares Discriminant Analysis algorithm (PLSDA)** with some native S3 functions (print() and summary()), overloaded to display the main results in one-time shot 
 
 * Descriptive and Explanatory Graphs with RShiny Dashboard
 
