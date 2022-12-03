@@ -33,37 +33,42 @@
 # LEARNING AND CREATION OF THE PLSDA MODEL
 plsda.fit<-function(formula, data, ncomp = 2){
   
-  #check if the entry is a formula Y~X
+  #check whether the input is a formula Y~X
   if(!inherits(formula, "formula")){
     stop("formula must be R formula !")
   }
   
+  #Check whether the name of Y is fulfilled
+  if (Y_name=="character(0)"){
+    stop("No target name fulfilled")
+  }
+    
   #getting X et Y
   X <- model.matrix(formula, data = data) #
   X <- X[,-1] #suppression of the intercept
   Y <- model.response(model.frame(formula, data = data)) #
   Y <- as.factor(as.vector(Y)) #
   
-  #Extraction of the target variable name
+  #collection of the target variable name
   Xname <- colnames(X) #naming X columns
   Yname <- intersect(all.vars(formula)[1],colnames(data)) #naming Y column
   
   #calculation of Xmeans
   Xmeans <- colMeans(X)
   
-  #definition of n (nb of observations), p (nb of explicative variables), q (nb of modalities)
+  #definitions of n (nb of observations), p (nb of explanatory variables), q (nb of modalities)
   n <- nrow(X)
   p <- ncol(X)
   q <- nlevels(Y)
   
-  #getting the Y modality matrix
+  #collection of the Y dummies-matrix
   Yb <- as.data.frame(plsda.dumnies(Y)$dum)
   
-  #scaling X and Y
+  #scaling of X and Y
   Xk <- scale(X)
   Yk <- scale(Yb)
   
-  #instanciation des matrics weight, scores et loading de X et Y
+  #design of the following matrices : weight, scores and loadings
   Xweights <- matrix(0, p, ncomp)
   Yweights <- matrix(0, q, ncomp)
   Xscores <- matrix(0, n, ncomp)
@@ -73,7 +78,7 @@ plsda.fit<-function(formula, data, ncomp = 2){
   
   u <- Yb[,1]
   
-  #loop to make the nipals calculs
+  ##design of of a loop to make the Nipals calculations
   for (i in 1:ncomp){
     Wold <- rep(1,p)
     n_iter <- 1
@@ -90,7 +95,7 @@ plsda.fit<-function(formula, data, ncomp = 2){
       n_iter <- n_iter+1
     }
     
-    #Nipals calculs
+    #Nipals calculations
     t <- Xk%*%W
     u <- Yk%*%q/sum(q^2)
     Xl <- t(Xk)%*%t/sum(t^2)
@@ -98,7 +103,7 @@ plsda.fit<-function(formula, data, ncomp = 2){
     Yl <- t(Yk)%*%t/sum(t^2)
     Yk <- Yk-t%*%t(Yl)
     
-    #fill in the matrixes
+    #fill in the matrices
     Xweights[, i] <- W
     Yweights[, i] <- q
     Xscores[, i] <- t
