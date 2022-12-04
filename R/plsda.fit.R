@@ -42,12 +42,7 @@ plsda.fit<-function(formula, data, ncomp = 2){
   
   #collection of the target variable name
   Yname <- intersect(all.vars(formula)[1],colnames(data)) #naming Y column
-  
-  #Check whether the name of Y is fulfilled
-  if (Yname=="character(0)"){
-    stop("No target name fulfilled")
-  }
-    
+      
   #getting X et Y
   X <- model.matrix(formula, data = data) #
   X <- X[,-1] #suppression of the intercept
