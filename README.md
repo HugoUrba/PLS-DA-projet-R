@@ -28,6 +28,9 @@ R package programming which allows to perform a PLS regression on a dataset
 During the modeling process, the PLS regression will construct the series of factors (uh, th) so that their covariance is maximum. The number of factors cannot exceed the number of explanatory variables. 
 
 **You can directly import our package for R from GitHub with Devtools :: , or by downloading the attached package.tar.gz**
-
+##library(devtools)##
+install_github("HugoUrba/PLS-DA-projet-R", force = T)
+library(PLS)
+launchApp()
 
 * No dataset to deal with ? Do not worry. The dataset used for our tutorial is attached. 
