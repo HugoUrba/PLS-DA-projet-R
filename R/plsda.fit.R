@@ -1,7 +1,7 @@
 #' PLS-DA
-#' {plsda.fit} is used to fit a PLS-DA regression model.
+#' {plsda.fit} is used to fit a PLS-DA regression model.plsda.fit(formula, data,ncomp or cv)
 #' @param
-#' formula, 
+#' formula, the Y to be correlated to the dataframe(eg:fit<-plsda.fit(Species~.,))
 #' @param
 #' data, the dataframe containing the variables in the model.
 #' @param
@@ -26,7 +26,9 @@
 #' to have the final coefficients of PLS-DA.
 #' 
 #' {plsda.coef} the final coefficients of the plsda, which are logit functions.
-#' 
+
+#' @examples
+#' fit <-plsda.fit(Species~;, iris, ncomp=3)
 #'@export
 
 
