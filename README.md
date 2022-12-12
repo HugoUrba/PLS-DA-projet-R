@@ -31,8 +31,7 @@ During the modeling process, the PLS regression will construct the series of fac
 
 ```{r}
 library(devtools)
-install_github("HugoUrba/PLS-DA-projet-R", force=T)
+install_github("'https://github.com/HugoUrba/PLS-DA-projet-R.git")
 library(PLS)
-launch(App)
 ```
 * No dataset to deal with ? Do not worry. The dataset used for our tutorial is attached. 
